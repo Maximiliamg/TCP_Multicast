@@ -29,6 +29,8 @@ import java.util.Vector;
 public class TCPServiceManager extends Thread implements TCPServiceManagerCallerInterface, MulticastManagerCallerInterface {
 
     ServerSocket serverSocket;
+    int MULTI_PORT;
+    int ADDRESS;
     MulticastManager manager = new MulticastManager("224.0.0.2", 9090, this);
     private int port;
     private TCPServiceManagerCallerInterface caller;
@@ -36,7 +38,7 @@ public class TCPServiceManager extends Thread implements TCPServiceManagerCaller
     Vector<ClientSocketManager> clients = new Vector<ClientSocketManager>();
     final int NUMBER_OF_THREADS = 50;
 
-    public TCPServiceManager(int port, TCPServiceManagerCallerInterface caller) {
+    public TCPServiceManager(int port, TCPServiceManagerCallerInterface caller, int MULTI_PORT, String ADRESS) {
         this.port = port;
         this.caller = caller;
         initializeThreads();

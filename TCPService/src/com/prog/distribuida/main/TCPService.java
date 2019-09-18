@@ -10,15 +10,20 @@ import java.net.Socket;
 import com.prog.distribuida.tcp.TCPServiceManager;
 import com.prog.distribuida.tcp.TCPServiceManagerCallerInterface;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
  * @author edangulo
  */
 public class TCPService implements TCPServiceManagerCallerInterface {
+    
+    int PORT, MULTI_PORT;
+    String ADRESS, line;
 
     public TCPService() {
-        new TCPServiceManager(9092, this);
+        setTCPPort();
+        new TCPServiceManager(PORT, this, MULTI_PORT, ADRESS);
     }
     
     /**
@@ -26,6 +31,18 @@ public class TCPService implements TCPServiceManagerCallerInterface {
      */
     public static void main(String[] args) {
         new TCPService();
+    }
+    
+    public void setTCPPort(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the TCP port");
+        line = scanner.nextLine();
+        PORT = Integer.parseInt(line);
+        System.out.println("Enter Multicast port");
+        line = scanner.nextLine();
+        MULTI_PORT = Integer.parseInt(line);
+        System.out.println("Enter multicast adress");
+        ADRESS = scanner.nextLine();
     }
 
     @Override
