@@ -21,6 +21,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -105,21 +107,14 @@ public class TCPServiceManager extends Thread implements TCPServiceManagerCaller
 
     @Override
     public void messageReceiveFromClient(Socket clientSocket, Object file) {
-        //sendMessageToAllClients(clientSocket.getInetAddress().getHostName()  + ":" + clientSocket.getPort() + ": " + new String(data));
         System.out.println(file);
-//        String fileName = file.get(0).getFileName();
-//
 //        try {
-//            FileOutputStream fos = new FileOutputStream(fileName, true);
-//            for (FilePart fp : file) {
-//                fos.write(fp.getData());
-//            }
-//            fos.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
+//            this.sleep(10);
+            manager.SendThisMessage(file);
+            System.out.println("Recibido");
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(TCPServiceManager.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        manager.SendThisMessage(file);
-        System.out.println("Recibido");
     }
 
     @Override
