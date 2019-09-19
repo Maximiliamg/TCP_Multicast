@@ -108,13 +108,13 @@ public class TCPServiceManager extends Thread implements TCPServiceManagerCaller
     @Override
     public void messageReceiveFromClient(Socket clientSocket, Object file) {
         System.out.println(file);
-//        try {
-//            this.sleep(10);
+        try {
+            this.sleep(10);
             manager.SendThisMessage(file);
             System.out.println("Recibido");
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(TCPServiceManager.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(TCPServiceManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
