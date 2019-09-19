@@ -14,7 +14,6 @@ import java.util.Scanner;
 
 /**
  *
- * @author edangulo
  */
 public class TCPService implements TCPServiceManagerCallerInterface {
     
