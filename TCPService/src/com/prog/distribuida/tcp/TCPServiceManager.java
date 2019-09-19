@@ -24,14 +24,13 @@ import java.util.Vector;
 
 /**
  *
- * @author edangulo
  */
 public class TCPServiceManager extends Thread implements TCPServiceManagerCallerInterface, MulticastManagerCallerInterface {
 
     ServerSocket serverSocket;
     int MULTI_PORT;
-    int ADDRESS;
-    MulticastManager manager = new MulticastManager("224.0.0.2", 9090, this);
+    String ADRESS;
+    MulticastManager manager;
     private int port;
     private TCPServiceManagerCallerInterface caller;
     boolean isEnable = true;
@@ -41,6 +40,9 @@ public class TCPServiceManager extends Thread implements TCPServiceManagerCaller
     public TCPServiceManager(int port, TCPServiceManagerCallerInterface caller, int MULTI_PORT, String ADRESS) {
         this.port = port;
         this.caller = caller;
+        this.ADRESS = ADRESS;
+        this.MULTI_PORT = MULTI_PORT;
+        this.manager = new MulticastManager(ADRESS, MULTI_PORT, this);
         initializeThreads();
         this.start();
     }
